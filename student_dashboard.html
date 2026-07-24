@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - UNIDOCS</title>
+    <link rel="stylesheet" href="style.css"/>
+ <style>
+
+        .container{
+            width: 420px;
+            background: rgba(255,255,255,0.12);
+            padding: 30px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
+
+        h2{
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 26px;
+            letter-spacing: 1px;
+        }
+
+        label{
+            font-size: 15px;
+        }
+
+        select, textarea, button{
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+        }
+
+        select, textarea{
+            background: rgba(255,255,255,0.85);
+        }
+
+        button{
+            background: #ffcc00;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        #error{
+            background: rgba(255, 50, 50, 0.7);
+            padding: 10px;
+            border-radius: 8px;
+            display: none;
+            margin-bottom: 10px;
+        }
+
+        #success{
+            background: rgba(50, 255, 50, 0.7);
+            padding: 10px;
+            border-radius: 8px;
+            display: none;
+            margin-bottom: 10px;
+        }
+
+        a{
+            color: white;
+            text-decoration: underline;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard">
+        <h2 id="welcomeText">Welcome, Student</h2>
+
+        <p><b>Name:</b> <span id="studentName"></span></p>
+        <p><b>Email:</b> <span id="studentEmail"></span></p>
+        <p><b>College ID:</b> <span id="studentCollegeID"></span></p>
+
+        <button onclick="location.href='student_request_document.html'">Request Document</button>
+        <button onclick="location.href='student_status.html'">View Request Status</button>
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <script>
+        // Load student data from localStorage
+        let name = localStorage.getItem("studentName");
+        let email = localStorage.getItem("studentEmail");
+        let collegeID = localStorage.getItem("studentCollegeID");
+
+        // Display on dashboard
+        document.getElementById("welcomeText").innerHTML = "Welcome, " + name;
+        document.getElementById("studentName").innerHTML = name;
+        document.getElementById("studentEmail").innerHTML = email;
+        document.getElementById("studentCollegeID").innerHTML = collegeID;
+
+        function logout() {
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
+</html>
