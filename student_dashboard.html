@@ -81,26 +81,39 @@
         <p><b>College ID:</b> <span id="studentCollegeID"></span></p>
 
         <button onclick="location.href='student_request_document.html'">Request Document</button>
-        <button onclick="location.href='student_status.html'">View Request Status</button>
+        <button onclick="location.href='student_request_status.html'">View Request Status</button>
         <button onclick="logout()">Logout</button>
+         
     </div>
 
     <script>
-        // Load student data from localStorage
-        let name = localStorage.getItem("studentName");
-        let email = localStorage.getItem("studentEmail");
-        let collegeID = localStorage.getItem("studentCollegeID");
 
-        // Display on dashboard
-        document.getElementById("welcomeText").innerHTML = "Welcome, " + name;
-        document.getElementById("studentName").innerHTML = name;
-        document.getElementById("studentEmail").innerHTML = email;
-        document.getElementById("studentCollegeID").innerHTML = collegeID;
+const student = JSON.parse(localStorage.getItem("student"));
 
-        function logout() {
-            window.location.href = "index.html";
-        }
-    </script>
+if (!student) {
+    window.location.href = "student_login.html";
+}
 
+document.getElementById("welcomeText").innerHTML =
+    "Welcome, " + student.name;
+
+document.getElementById("studentName").innerHTML =
+    student.name;
+
+document.getElementById("studentEmail").innerHTML =
+    student.email;
+
+document.getElementById("studentCollegeID").innerHTML =
+    student.id;
+
+function logout(){
+
+    localStorage.removeItem("student");
+
+    window.location.href = "student_login.html";
+
+}
+
+</script>
 </body>
 </html>
